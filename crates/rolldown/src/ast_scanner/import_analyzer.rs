@@ -17,14 +17,11 @@ impl<'me, 'ast: 'me> AstScanner<'me, 'ast> {
     let symbol_flag = self.result.symbol_ref_db.scoping().symbol_flags(symbol_id);
     if symbol_flag.contains(SymbolFlags::Import) {
       let symbol_ref: SymbolRef = (self.immutable_ctx.idx, symbol_id).into();
-      
+
       // Get the import declaration span if available
-      let import_decl_span = self
-        .result
-        .named_imports
-        .get(&symbol_ref)
-        .map(|import| import.span_imported);
-      
+      let import_decl_span =
+        self.result.named_imports.get(&symbol_ref).map(|import| import.span_imported);
+
       let is_namespace = self
         .result
         .named_imports

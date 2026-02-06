@@ -314,7 +314,13 @@ impl BuildDiagnostic {
     Self::new_inner(ExportUndefinedVariable { filename, source, span, name })
   }
 
-  pub fn assign_to_import(filename: ArcStr, source: ArcStr, span: Span, name: ArcStr, import_decl_span: Option<Span>) -> Self {
+  pub fn assign_to_import(
+    filename: ArcStr,
+    source: ArcStr,
+    span: Span,
+    name: ArcStr,
+    import_decl_span: Option<Span>,
+  ) -> Self {
     Self::new_inner(AssignToImport { filename, source, span, name, import_decl_span })
   }
 

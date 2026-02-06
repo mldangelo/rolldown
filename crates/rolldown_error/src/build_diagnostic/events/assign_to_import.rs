@@ -39,12 +39,12 @@ impl BuildEvent for AssignToImport {
       self.span.start..self.span.end,
       format!("Imports are immutable in JavaScript. To modify the value of this import, you must export a setter function in the imported file (e.g. 'set{}') and then import and call that function here instead.", self.name.to_upper_camel_case())
     );
-    
+
     if let Some(import_span) = self.import_decl_span {
       diagnostic.add_label(
         &file_id,
         import_span.start..import_span.end,
-        format!("'{}' is imported here", self.name)
+        format!("'{}' is imported here", self.name),
       );
     }
   }
